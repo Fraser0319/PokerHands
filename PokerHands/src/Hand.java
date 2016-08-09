@@ -2,6 +2,9 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Hand {
 
@@ -46,25 +49,40 @@ public class Hand {
 
 	public handRankings checkPair(ArrayList<Card> hand) {
 
-		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
+		Map<String, Integer> freqMap = new HashMap<String, Integer>();
+
 		for (Card c : hand) {
-			if (tempMap.containsKey(c.getValue())) {
-				tempMap.put(c.getValue(), tempMap.get(c.getValue()) + 1);
+			if (freqMap.containsKey(c.getValue())) {
+				freqMap.put(c.getValue(), freqMap.get(c.getValue()) + 1);
 			} else {
-				tempMap.put(c.getValue(), 1);
+				freqMap.put(c.getValue(), 1);
 			}
 		}
+		System.out.println(freqMap.entrySet());
 
-		if (tempMap.containsValue(4)) {
+		Set<Integer> fullHouseCheck = new HashSet<Integer>(freqMap.values());
+
+		System.out.println("set output: " + fullHouseCheck);
+		if (freqMap.containsValue(4)) {
 			return handRankings.fourOfAKind;
 
-		} else if (tempMap.containsValue(3)) {
-			return handRankings.threeOfAKind;
-
-		} else if (tempMap.containsValue(2)) {
-			return handRankings.onePair;
+		} else if(fullHouseCheck.contains(2) && fullHouseCheck.contains(3)){
+			return handRankings.fullHouse;
 		}
-		return handRankings.fail;
+		
+		else if (freqMap.containsValue(3)) {
+			return handRankings.threeOfAKind;
+		}
+
+		if (Collections.frequency(freqMap.values(), 2) == 2) {
+			return handRankings.twoPairs;
+		}
+
+		if (freqMap.containsValue(2)) {
+			return handRankings.onePair;
+		} 
+
+		return handRankings.highCard;
 	}
 
 	@Override

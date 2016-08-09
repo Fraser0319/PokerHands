@@ -1,6 +1,6 @@
 public enum handRankings{
 
-		highCard, //Highest value card.
+		highCard, //Highest value card. 
 		onePair, // Two cards of the same value.
 		twoPairs, //Two different pairs.
 		threeOfAKind, //Three cards of the same value.
