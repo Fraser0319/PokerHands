@@ -81,10 +81,10 @@ public class testing {
 		Hand h2 = new Hand(hand2);
 
 		Card c1 = new Card("8C");
-		Card c2 = new Card("TS");
+		Card c2 = new Card("8S");
 		Card c3 = new Card("KC");
-		Card c4 = new Card("9H");
-		Card c5 = new Card("4S");
+		Card c4 = new Card("8H");
+		Card c5 = new Card("8D");
 		Card c6 = new Card("7C");
 		Card c7 = new Card("2C");
 		Card c8 = new Card("5C");
@@ -104,11 +104,12 @@ public class testing {
 		Player p1 = new Player("Player 1", h1);
 		Player p2 = new Player("Player 2", h2);
 		
-		h1.rankHand(hand1);
-		h1.rankHand(hand2);
+//		h1.rankHand(hand1);
+//		h1.rankHand(hand2);
 		
-	
-		//assertTrue(Hand.handRankings.Flush == h2.rankHand(hand2));
+		assertTrue(handRankings.fourOfAKind == h1.checkPair(hand1));
+		
+		assertTrue(handRankings.Flush == h2.checkFlush(hand2));
 		
 	}
 
