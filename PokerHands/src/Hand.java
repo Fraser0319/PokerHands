@@ -90,17 +90,12 @@ public class Hand {
 			straightList.add(c.getValue());
 		}
 		Collections.sort(straightList);
-		// System.out.println(straightList.get(0).showValue());
-		// System.out.println(straightList.get(0+1).showValue());
-		// System.out.println(straightList.get(0 + 1).showValue() ==
-		// straightList.get(0).showValue() + 1);
+
 		for (int i = 0; i < 4; i++) {
 			if (straightList.get(j + 1).showValue() == straightList.get(i).showValue() + 1) {
 				count++;
 				j++;
 			}
-			
-			System.out.println(count);
 
 		}
 		if (count == 4) {
