@@ -1,0 +1,18 @@
+INDEX VERSION 1.129+/home/Fraser/Documents/Development/eclipseWorkspace/PokerHands/.metadata/.plugins/org.eclipse.jdt.core
+3385377291.index
+190858941.index
+1886429374.index
+3319773217.index
+1204969984.index
+1306215916.index
+2006013771.index
+3195083562.index
+1283815207.index
+3812331305.index
+3290121586.index
+1541763410.index
+923114052.index
+565430219.index
+3323603278.index
+1882577715.index
+2463092673.index
