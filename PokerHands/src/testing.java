@@ -246,11 +246,11 @@ public class testing {
 	public void testStraight() {
 		ArrayList<Card> hand1 = new ArrayList<Card>();
 		Hand h1 = new Hand(hand1);
-		Card c1 = new Card("AC");
-		Card c2 = new Card("5S");
-		Card c3 = new Card("4D");
-		Card c4 = new Card("2H");
-		Card c5 = new Card("3D");
+		Card c1 = new Card("KC");
+		Card c2 = new Card("JS");
+		Card c3 = new Card("QD");
+		Card c4 = new Card("TH");
+		Card c5 = new Card("AD");
 		hand1.add(c1);
 		hand1.add(c2);
 		hand1.add(c3);
@@ -262,7 +262,7 @@ public class testing {
 	
 	@Test
 	public void testStraightFlush() {
-
+		
 	}
 	
 	@Test
