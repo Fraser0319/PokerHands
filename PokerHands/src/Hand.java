@@ -24,14 +24,10 @@ public class Hand {
 		return hand;
 	}
 
-	// public handRankings rankHand(ArrayList<Card> hand) {
-	//
-	// }
-
 	public handRankings checkFlush(ArrayList<Card> hand) {
 		String suit = hand.get(0).getSuit();
 		int suitCount = 0;
-		HashMap<String, String> tempMap = new HashMap<String, String>();
+		HashMap<cardValue, String> tempMap = new HashMap<cardValue, String>();
 		for (Card c : hand) {
 			tempMap.put(c.getValue(), c.getSuit());
 		}
@@ -49,7 +45,7 @@ public class Hand {
 
 	public handRankings checkPair(ArrayList<Card> hand) {
 
-		Map<String, Integer> freqMap = new HashMap<String, Integer>();
+		Map<cardValue, Integer> freqMap = new HashMap<cardValue, Integer>();
 
 		for (Card c : hand) {
 			if (freqMap.containsKey(c.getValue())) {
@@ -66,10 +62,10 @@ public class Hand {
 		if (freqMap.containsValue(4)) {
 			return handRankings.fourOfAKind;
 
-		} else if(fullHouseCheck.contains(2) && fullHouseCheck.contains(3)){
+		} else if (fullHouseCheck.contains(2) && fullHouseCheck.contains(3)) {
 			return handRankings.fullHouse;
 		}
-		
+
 		else if (freqMap.containsValue(3)) {
 			return handRankings.threeOfAKind;
 		}
@@ -80,9 +76,38 @@ public class Hand {
 
 		if (freqMap.containsValue(2)) {
 			return handRankings.onePair;
-		} 
+		}
 
 		return handRankings.highCard;
+	}
+
+	public handRankings checkStraight(ArrayList<Card> hand) {
+
+		ArrayList<cardValue> straightList = new ArrayList<cardValue>();
+		int count = 0;
+		int j = 0;
+		for (Card c : hand) {
+			straightList.add(c.getValue());
+		}
+		Collections.sort(straightList);
+		// System.out.println(straightList.get(0).showValue());
+		// System.out.println(straightList.get(0+1).showValue());
+		// System.out.println(straightList.get(0 + 1).showValue() ==
+		// straightList.get(0).showValue() + 1);
+		for (int i = 0; i < 4; i++) {
+			if (straightList.get(j + 1).showValue() == straightList.get(i).showValue() + 1) {
+				count++;
+				j++;
+			}
+			
+			System.out.println(count);
+
+		}
+		if (count == 4) {
+			return handRankings.Straight;
+		}
+
+		return handRankings.fail;
 	}
 
 	@Override
