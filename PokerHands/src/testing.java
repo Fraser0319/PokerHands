@@ -5,33 +5,33 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class testing {
-
-	@Test
-	public void testCreateCard() {
-		Card c1 = new Card("8C");
-		Card c2 = new Card("TS");
-		Card c3 = new Card("KC");
-		Card c4 = new Card("9H");
-		Card c5 = new Card("4S");
-		Card c6 = new Card("8C");
-		Card c7 = new Card("TS");
-		Card c8 = new Card("KC");
-		Card c9 = new Card("9H");
-		Card c10 = new Card("4S");
-
-		ArrayList<Card> temp = new ArrayList<Card>();
-		temp.add(c1);
-		temp.add(c2);
-		temp.add(c3);
-		temp.add(c4);
-		temp.add(c5);
-		Hand h = new Hand("8C TC KC 9C 4C");
-		System.out.println(temp);
-		String trim = " 8C TC KC 9C 4C";
-		System.out.println(trim);
-		System.out.println(h.evaluateHand(h.getHand()));
-
-	}
+//
+//	@Test
+//	public void testCreateCard() {
+//		Card c1 = new Card("8C");
+//		Card c2 = new Card("TS");
+//		Card c3 = new Card("KC");
+//		Card c4 = new Card("9H");
+//		Card c5 = new Card("4S");
+//		Card c6 = new Card("8C");
+//		Card c7 = new Card("TS");
+//		Card c8 = new Card("KC");
+//		Card c9 = new Card("9H");
+//		Card c10 = new Card("4S");
+//
+//		ArrayList<Card> temp = new ArrayList<Card>();
+//		temp.add(c1);
+//		temp.add(c2);
+//		temp.add(c3);
+//		temp.add(c4);
+//		temp.add(c5);
+//		Hand h = new Hand("8C TC KC 9C 4C");
+//		System.out.println(temp);
+//		String trim = " 8C TC KC 9C 4C";
+//		System.out.println(trim);
+//		System.out.println(h.evaluateHand(h.getHand()));
+//
+//	}
 	//
 	// @Test
 	// public void testPlayerWithHand() {
@@ -242,23 +242,23 @@ public class testing {
 	//
 	// }
 	//
-	// @Test
-	// public void testStraight() {
-	// ArrayList<Card> hand1 = new ArrayList<Card>();
-	//
-	// Card c1 = new Card("KC");
-	// Card c2 = new Card("JS");
-	// Card c3 = new Card("QD");
-	// Card c4 = new Card("TH");
-	// Card c5 = new Card("AD");
-	// hand1.add(c1);
-	// hand1.add(c2);
-	// hand1.add(c3);
-	// hand1.add(c4);
-	// hand1.add(c5);
-	// Hand h1 = new Hand(hand1);
-	// assertTrue(true == h1.checkStraight(hand1));
-	// }
+	 @Test
+	 public void testStraight() {
+//	 ArrayList<Card> hand1 = new ArrayList<Card>();
+//	
+//	 Card c1 = new Card("2C");
+//	 Card c2 = new Card("3S");
+//	 Card c3 = new Card("4D");
+//	 Card c4 = new Card("5H");
+//	 Card c5 = new Card("AD");
+//	 hand1.add(c1);
+//	 hand1.add(c2);
+//	 hand1.add(c3);
+//	 hand1.add(c4);
+//	 hand1.add(c5);
+	 Hand h1 = new Hand("2C AD 3C 4H 5S");
+	 assertTrue(true == h1.checkStraight(h1.getHand()));
+	 }
 	//
 	// @Test
 	// public void testStraightFlush() {
@@ -278,22 +278,39 @@ public class testing {
 	// assertTrue(true== h1.checkStraightFlush(hand1));
 	// }
 	//
-	// @Test
-	// public void testRoyalFlush() {
-	// ArrayList<Card> hand1 = new ArrayList<Card>();
-	//
-	// Card c1 = new Card("AC");
-	// Card c2 = new Card("KC");
-	// Card c3 = new Card("QC");
-	// Card c4 = new Card("TC");
-	// Card c5 = new Card("JC");
-	// hand1.add(c1);
-	// hand1.add(c2);
-	// hand1.add(c3);
-	// hand1.add(c4);
-	// hand1.add(c5);
-	// Hand h1 = new Hand(hand1);
-	// assertTrue(true== h1.checkRoyalFlush(hand1));
-	// }
+//	 @Test
+//	 public void testRoyalFlush() {
+//	 ArrayList<Card> hand1 = new ArrayList<Card>();
+//	
+//	 Card c1 = new Card("AC");
+//	 Card c2 = new Card("KC");
+//	 Card c3 = new Card("QC");
+//	 Card c4 = new Card("TC");
+//	 Card c5 = new Card("JC");
+//	 hand1.add(c1);
+//	 hand1.add(c2);
+//	 hand1.add(c3);
+//	 hand1.add(c4);
+//	 hand1.add(c5);
+//	 Hand h1 = new Hand(hand1);
+//	 assertTrue(true== h1.checkRoyalFlush(hand1));
+//	 }
+	 
+	 @Test
+	 public void testMatchingHands(){
+		 // pair vs pair
+		 Hand h1 = new Hand("2C 2D 3C 4H AS");
+		 Hand h2 = new Hand("3D 3H 3S KC KD");
+		 
+		 System.out.println(h2.evaluateHand(h2.getHand()));
+		 
+		 if(h1.getHighestCardValue(h1.getHand()) > h2.getHighestCardValue(h2.getHand())){
+			 System.out.println("hand 1 wins !" + h1.getHand().toString());
+		 }else{
+			 System.out.println("hand 2 wins !" + h2.getHand().toString());
+		 }
+		 
+		 
+	 }
 
 }

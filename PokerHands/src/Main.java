@@ -1,7 +1,5 @@
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -13,9 +11,6 @@ public class Main {
 	}
 
 	public void parseHands() {
-
-		// ArrayList<String> parsedHand1 = new ArrayList<String>();
-		// ArrayList<String> parsedHand2= new ArrayList<String>();
 		int p1wins = 0;
 		int p2wins = 0;
 
@@ -27,17 +22,25 @@ public class Main {
 
 				handRankings result1 = hand1.evaluateHand(hand1.getHand());
 				handRankings result2 = hand2.evaluateHand(hand2.getHand());
-
-				if (result1.value > result2.value) {
-					p1wins++;
-					System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);
+				
+				if (result1.value == result2.value) {
+					if (hand1.getHighestCardValue(hand1.getHand()) > hand2.getHighestCardValue(hand2.getHand())) {
+						p1wins++;
+						System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);
+					}
 				} else {
-					p2wins++;
-					System.out.println("player 2 wins\n" + hand2.toString() + " " + result2);
+
+					if (result1.value > result2.value) {
+						p1wins++;
+						System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);
+					} else {
+						p2wins++;
+						System.out.println("player 2 wins\n" + hand2.toString() + " " + result2);
+					}
 				}
 			}
-			System.out.println("\n"+p1wins);
-			System.out.println("\n"+p2wins);
+			System.out.println("\n" + p1wins);
+			System.out.println("\n" + p2wins);
 
 		} catch (Exception e) {
 			System.out.println(e);

@@ -9,8 +9,10 @@ import java.util.Set;
 
 public class Hand {
 
-	private List<cardValue> broadwayList = Arrays.asList(cardValue.A, cardValue.T, cardValue.J, cardValue.K,
-			cardValue.Q);
+	private List<cardValue> broadwayList = Arrays.asList(cardValue.A,
+			cardValue.T, cardValue.J, cardValue.K, cardValue.Q);
+	private List<cardValue> wheelList = Arrays.asList(cardValue.A,
+			cardValue.Two, cardValue.Three, cardValue.Four, cardValue.Five);
 	private ArrayList<Card> handList = new ArrayList<Card>();
 
 	String hand;
@@ -31,7 +33,16 @@ public class Hand {
 			handList.add(currentCard);
 		}
 	}
-
+	
+	public int getHighestCardValue(ArrayList<Card> hand){
+		ArrayList<cardValue> cardValues = new ArrayList<cardValue>();
+		for(Card c : hand){
+			cardValues.add(c.getValue());
+		}
+		cardValue maxCard = Collections.max(cardValues);
+		return maxCard.value;
+	}
+	
 	@Override
 	public String toString() {
 		return this.hand.toString();
@@ -40,7 +51,7 @@ public class Hand {
 	public Map<cardValue, Integer> checkFrequency(ArrayList<Card> hand) {
 
 		Map<cardValue, Integer> freqMap = new HashMap<cardValue, Integer>();
-
+		
 		for (Card c : hand) {
 			if (freqMap.containsKey(c.getValue())) {
 				freqMap.put(c.getValue(), freqMap.get(c.getValue()) + 1);
@@ -48,7 +59,6 @@ public class Hand {
 				freqMap.put(c.getValue(), 1);
 			}
 		}
-
 		return freqMap;
 	}
 
@@ -56,6 +66,7 @@ public class Hand {
 		String suit = hand.get(0).getSuit();
 		int suitCount = 0;
 		HashMap<cardValue, String> tempMap = new HashMap<cardValue, String>();
+		
 		for (Card c : hand) {
 			tempMap.put(c.getValue(), c.getSuit());
 		}
@@ -67,7 +78,6 @@ public class Hand {
 		if (suitCount == 5) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -95,7 +105,7 @@ public class Hand {
 	public boolean checkThreeOfAKind(ArrayList<Card> hand) {
 
 		Map<cardValue, Integer> freqMap = checkFrequency(hand);
-
+		
 		if (freqMap.containsValue(3)) {
 			return true;
 		}
@@ -117,7 +127,7 @@ public class Hand {
 		Map<cardValue, Integer> freqMap = checkFrequency(hand);
 
 		Set<Integer> fullHouseCheck = new HashSet<Integer>(freqMap.values());
-
+		System.out.println(freqMap.keySet());
 		if (fullHouseCheck.contains(2) && fullHouseCheck.contains(3)) {
 			return true;
 		} else {
@@ -134,9 +144,12 @@ public class Hand {
 			straightList.add(c.getValue());
 		}
 		Collections.sort(straightList);
-
+		if(straightList.containsAll(wheelList)){
+			return true;
+		}
 		for (int i = 0; i < 4; i++) {
-			if (straightList.get(j + 1).showValue() == straightList.get(i).showValue() + 1) {
+			if (straightList.get(j + 1).showValue() == straightList.get(i)
+					.showValue() + 1) {
 				count++;
 				j++;
 			}
@@ -145,7 +158,6 @@ public class Hand {
 		if (count == 4) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -199,7 +211,6 @@ public class Hand {
 
 		} else if (checkPair(hand)) {
 			return handRankings.onePair;
-
 		} else {
 			return handRankings.highCard;
 		}
