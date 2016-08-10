@@ -1,14 +1,16 @@
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Hand {
 
 	private ArrayList<Card> hand = new ArrayList<Card>();
+	private List<cardValue> broadwayList = Arrays.asList(cardValue.A,cardValue.T,cardValue.J,cardValue.K,cardValue.Q);
 
 	public Hand(ArrayList<Card> hand) {
 		this.hand = hand;
@@ -92,7 +94,8 @@ public class Hand {
 		Collections.sort(straightList);
 
 		for (int i = 0; i < 4; i++) {
-			if (straightList.get(j + 1).showValue() == straightList.get(i).showValue() + 1) {
+			if (straightList.get(j + 1).showValue() == straightList.get(i)
+					.showValue() + 1) {
 				count++;
 				j++;
 			}
@@ -102,6 +105,29 @@ public class Hand {
 			return handRankings.Straight;
 		}
 
+		return handRankings.fail;
+	}
+
+	public handRankings checkStraightFlush(ArrayList<Card> hand) {
+
+		if (checkFlush(hand) == handRankings.Flush
+				&& checkStraight(hand) == handRankings.Straight) {
+			return handRankings.straightFlush;
+		}
+		return handRankings.fail;
+	}
+
+	public handRankings checkRoyalFlush(ArrayList<Card> hand) {
+		ArrayList<cardValue> valueList = new ArrayList<cardValue>();
+		
+		if (checkFlush(hand) == handRankings.Flush) {
+			for (Card c : hand) {
+				valueList.add(c.getValue());
+			}
+			if(valueList.containsAll(broadwayList)){
+				return handRankings.royalFlush;
+			}
+		}
 		return handRankings.fail;
 	}
 

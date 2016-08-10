@@ -111,136 +111,136 @@ public class testing {
 //	//
 //	// }
 //
-//	@Test
-//	public void testHighCard() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("2S");
-//		Card c3 = new Card("AD");
-//		Card c4 = new Card("3H");
-//		Card c5 = new Card("5D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		System.out.println("check pair test : " + h1.checkPair(hand1));
-//		assertTrue(handRankings.highCard == h1.checkPair(hand1));
-//
-//	}
-//
-//	@Test
-//	public void testOnePair() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("2S");
-//		Card c3 = new Card("8D");
-//		Card c4 = new Card("3H");
-//		Card c5 = new Card("5D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		System.out.println("check pair test : " + h1.checkPair(hand1));
-//		assertTrue(handRankings.onePair == h1.checkPair(hand1));
-//
-//	}
-//
-//	@Test
-//	public void testTwoPair() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("5S");
-//		Card c3 = new Card("8D");
-//		Card c4 = new Card("3H");
-//		Card c5 = new Card("5D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		assertTrue(handRankings.twoPairs == h1.checkPair(hand1));
-//	}
-//
-//	@Test
-//	public void testThreeOfAKind() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("2S");
-//		Card c3 = new Card("8D");
-//		Card c4 = new Card("3H");
-//		Card c5 = new Card("8D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		assertTrue(handRankings.threeOfAKind == h1.checkPair(hand1));
-//	}
-//
-//	@Test
-//	public void testFourOfAKind() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("8S");
-//		Card c3 = new Card("8D");
-//		Card c4 = new Card("3H");
-//		Card c5 = new Card("8D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		assertTrue(handRankings.fourOfAKind == h1.checkPair(hand1));
-//	}
-//
-//	@Test
-//	public void testFlush() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8D");
-//		Card c2 = new Card("2D");
-//		Card c3 = new Card("4D");
-//		Card c4 = new Card("3D");
-//		Card c5 = new Card("5D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		assertTrue(handRankings.Flush == h1.checkFlush(hand1));
-//	}
-//
-//	@Test
-//	public void testfullHouse() {
-//		ArrayList<Card> hand1 = new ArrayList<Card>();
-//		Hand h1 = new Hand(hand1);
-//		Card c1 = new Card("8C");
-//		Card c2 = new Card("8S");
-//		Card c3 = new Card("8D");
-//		Card c4 = new Card("5H");
-//		Card c5 = new Card("5D");
-//		hand1.add(c1);
-//		hand1.add(c2);
-//		hand1.add(c3);
-//		hand1.add(c4);
-//		hand1.add(c5);
-//
-//		assertTrue(handRankings.fullHouse == h1.checkPair(hand1));
-//
-//	}
+	@Test
+	public void testHighCard() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("2S");
+		Card c3 = new Card("AD");
+		Card c4 = new Card("3H");
+		Card c5 = new Card("5D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		System.out.println("check pair test : " + h1.checkPair(hand1));
+		assertTrue(handRankings.highCard == h1.checkPair(hand1));
+
+	}
+
+	@Test
+	public void testOnePair() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("2S");
+		Card c3 = new Card("8D");
+		Card c4 = new Card("3H");
+		Card c5 = new Card("5D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		System.out.println("check pair test : " + h1.checkPair(hand1));
+		assertTrue(handRankings.onePair == h1.checkPair(hand1));
+
+	}
+
+	@Test
+	public void testTwoPair() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("5S");
+		Card c3 = new Card("8D");
+		Card c4 = new Card("3H");
+		Card c5 = new Card("5D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.twoPairs == h1.checkPair(hand1));
+	}
+
+	@Test
+	public void testThreeOfAKind() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("2S");
+		Card c3 = new Card("8D");
+		Card c4 = new Card("3H");
+		Card c5 = new Card("8D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.threeOfAKind == h1.checkPair(hand1));
+	}
+
+	@Test
+	public void testFourOfAKind() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("8S");
+		Card c3 = new Card("8D");
+		Card c4 = new Card("3H");
+		Card c5 = new Card("8D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.fourOfAKind == h1.checkPair(hand1));
+	}
+
+	@Test
+	public void testFlush() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8D");
+		Card c2 = new Card("2D");
+		Card c3 = new Card("4D");
+		Card c4 = new Card("3D");
+		Card c5 = new Card("5D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.Flush == h1.checkFlush(hand1));
+	}
+
+	@Test
+	public void testfullHouse() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("8C");
+		Card c2 = new Card("8S");
+		Card c3 = new Card("8D");
+		Card c4 = new Card("5H");
+		Card c5 = new Card("5D");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.fullHouse == h1.checkPair(hand1));
+
+	}
 
 	@Test
 	public void testStraight() {
@@ -262,12 +262,38 @@ public class testing {
 	
 	@Test
 	public void testStraightFlush() {
-		
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("2C");
+		Card c2 = new Card("3C");
+		Card c3 = new Card("4C");
+		Card c4 = new Card("5C");
+		Card c5 = new Card("6C");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
+
+		assertTrue(handRankings.straightFlush == h1.checkStraightFlush(hand1));
 	}
 	
 	@Test
 	public void testRoyalFlush() {
+		ArrayList<Card> hand1 = new ArrayList<Card>();
+		Hand h1 = new Hand(hand1);
+		Card c1 = new Card("AC");
+		Card c2 = new Card("KC");
+		Card c3 = new Card("QC");
+		Card c4 = new Card("TC");
+		Card c5 = new Card("JC");
+		hand1.add(c1);
+		hand1.add(c2);
+		hand1.add(c3);
+		hand1.add(c4);
+		hand1.add(c5);
 
+		assertTrue(handRankings.royalFlush== h1.checkRoyalFlush(hand1));
 	}
 
 }
