@@ -23,22 +23,33 @@ public class Main {
 				handRankings result1 = hand1.evaluateHand(hand1.getHand());
 				handRankings result2 = hand2.evaluateHand(hand2.getHand());
 				
-				if (result1.value == result2.value) {
-					if(result1 == handRankings.onePair || result1 == handRankings.twoPairs  || result1 == handRankings.threeOfAKind || result1 == handRankings.fourOfAKind ){
-						if(hand1.getHigherSet(hand1.getHand()).value > hand2.getHigherSet(hand2.getHand()).value ){
+				// checking a pair or higher set hand
+				int pairValue1 = hand1.getHigherSet(hand1.getHand()).value;
+				int pairValue2 = hand2.getHigherSet(hand2.getHand()).value;
+				
+				// finding the highest value card in the hand
+				int highCardValue1 = hand1.getHighestCardValue(hand1.getHand());
+				int highCardValue2 = hand2.getHighestCardValue(hand2.getHand());
+
+				if (result1 == result2) {
+					if (result1 == handRankings.onePair
+							|| result1 == handRankings.twoPairs
+							|| result1 == handRankings.threeOfAKind
+							|| result1 == handRankings.fourOfAKind) {
+						if (pairValue1 > pairValue2) {
 							p1wins++;
 							System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);
-						 }else{
-							 p2wins++;
-							System.out.println("player 2 wins\n" + hand2.toString() + " " + result2);
-						 }
-					}else{
-						if (hand1.getHighestCardValue(hand1.getHand()) > hand2.getHighestCardValue(hand2.getHand())) {
+						} else {
+							p2wins++;
+							System.out.println("player 2 wins\n"+ hand2.toString() + " " + result2);
+						}
+					} else {
+						if (highCardValue1 > highCardValue2) {
 							p1wins++;
 							System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);
 						}
 					}
-					
+
 				} else {
 
 					if (result1.value > result2.value) {
@@ -57,5 +68,4 @@ public class Main {
 			System.out.println(e);
 		}
 	}
-
 }
