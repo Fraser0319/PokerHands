@@ -312,5 +312,20 @@ public class testing {
 		 
 		 
 	 }
+	 
+	 @Test
+	 public void testMatchingpairs(){
+		 Hand h1 = new Hand("2C 2D 2C AH AS");
+		 Hand h2 = new Hand("3D 3H 3S 7C 7D");
+		 System.out.println("*** test matching pairs ***");
+		 System.out.println("hand 1 return val: " + h1.getHigherSet(h1.getHand()).value);
+		 System.out.println("hand 2 return val: " + h2.getHigherSet(h2.getHand()).value);
+		 if(h1.getHigherSet(h1.getHand()).value > h2.getHigherSet(h2.getHand()).value ){
+			 System.out.println("hand 1 wins !" + h1.getHand().toString());
+		 }else{
+			 System.out.println("hand 2 wins !" + h2.getHand().toString());
+		 }
+		 
+	 }
 
 }

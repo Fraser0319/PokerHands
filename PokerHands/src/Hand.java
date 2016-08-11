@@ -1,3 +1,4 @@
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,16 +34,35 @@ public class Hand {
 			handList.add(currentCard);
 		}
 	}
-	
-	public int getHighestCardValue(ArrayList<Card> hand){
+
+	public int getHighestCardValue(ArrayList<Card> hand) {
 		ArrayList<cardValue> cardValues = new ArrayList<cardValue>();
-		for(Card c : hand){
+		for (Card c : hand) {
 			cardValues.add(c.getValue());
 		}
 		cardValue maxCard = Collections.max(cardValues);
 		return maxCard.value;
 	}
-	
+
+	public cardValue getHigherSet(ArrayList<Card> hand) {
+		Map<cardValue, Integer> freqMap = checkFrequency(hand);
+		for (Map.Entry<cardValue, Integer> e : freqMap.entrySet()) {
+			cardValue card = e.getKey();
+			int freq = e.getValue();
+
+			switch (freq) {
+			case 2:
+				return card;
+			case 3:
+				return card;
+			case 4:
+				return card;
+			}
+		}
+
+		return cardValue.fail;
+	}
+
 	@Override
 	public String toString() {
 		return this.hand.toString();
@@ -51,7 +71,7 @@ public class Hand {
 	public Map<cardValue, Integer> checkFrequency(ArrayList<Card> hand) {
 
 		Map<cardValue, Integer> freqMap = new HashMap<cardValue, Integer>();
-		
+
 		for (Card c : hand) {
 			if (freqMap.containsKey(c.getValue())) {
 				freqMap.put(c.getValue(), freqMap.get(c.getValue()) + 1);
@@ -66,7 +86,7 @@ public class Hand {
 		String suit = hand.get(0).getSuit();
 		int suitCount = 0;
 		HashMap<cardValue, String> tempMap = new HashMap<cardValue, String>();
-		
+
 		for (Card c : hand) {
 			tempMap.put(c.getValue(), c.getSuit());
 		}
@@ -105,7 +125,7 @@ public class Hand {
 	public boolean checkThreeOfAKind(ArrayList<Card> hand) {
 
 		Map<cardValue, Integer> freqMap = checkFrequency(hand);
-		
+
 		if (freqMap.containsValue(3)) {
 			return true;
 		}
@@ -144,7 +164,7 @@ public class Hand {
 			straightList.add(c.getValue());
 		}
 		Collections.sort(straightList);
-		if(straightList.containsAll(wheelList)){
+		if (straightList.containsAll(wheelList)) {
 			return true;
 		}
 		for (int i = 0; i < 4; i++) {
