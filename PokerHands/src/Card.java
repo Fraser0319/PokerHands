@@ -5,13 +5,13 @@ public class Card {
 	
 	private String suit;
 	
-	private cardValue value;
+	private CardValue value;
 	
 	public String getSuit() {
 		return suit;
 	}
 
-	public cardValue getValue() {
+	public CardValue getValue() {
 		return value;
 	}
 
@@ -21,37 +21,37 @@ public class Card {
 		this.suit = this.card.substring(1, 2);
 	}
 	
-	public cardValue convertValue(String v){
+	public CardValue convertValue(String v){
 		
 		switch(v){
 		case "2":
-			return cardValue.Two;
+			return CardValue.Two;
 		case "3":
-			return cardValue.Three;
+			return CardValue.Three;
 		case "4":
-			return cardValue.Four;
+			return CardValue.Four;
 		case "5":
-			return cardValue.Five;
+			return CardValue.Five;
 		case "6":
-			return cardValue.Six;
+			return CardValue.Six;
 		case "7":
-			return cardValue.Seven;
+			return CardValue.Seven;
 		case "8":
-			return cardValue.Eight;
+			return CardValue.Eight;
 		case "9":
-			return cardValue.Nine;
+			return CardValue.Nine;
 		case "T":
-			return cardValue.T;
+			return CardValue.T;
 		case "J":
-			return cardValue.J;
+			return CardValue.J;
 		case "Q":
-			return cardValue.Q;
+			return CardValue.Q;
 		case "K":
-			return cardValue.K;
+			return CardValue.K;
 		case "A":
-			return cardValue.A;
+			return CardValue.A;
 		default:
-			return cardValue.fail;
+			return CardValue.fail;
 		}
 		
 	}

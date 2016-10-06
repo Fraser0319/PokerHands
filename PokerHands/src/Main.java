@@ -20,8 +20,8 @@ public class Main {
 				Hand hand1 = new Hand(line.substring(0, 14));
 				Hand hand2 = new Hand(line.substring(14, 29).trim());
 
-				handRankings result1 = hand1.evaluateHand(hand1.getHand());
-				handRankings result2 = hand2.evaluateHand(hand2.getHand());
+				HandRankings result1 = hand1.evaluateHand(hand1.getHand());
+				HandRankings result2 = hand2.evaluateHand(hand2.getHand());
 				
 				// checking a pair or higher set hand
 				int pairValue1 = hand1.getHigherSet(hand1.getHand()).value;
@@ -32,10 +32,10 @@ public class Main {
 				int highCardValue2 = hand2.getHighestCardValue(hand2.getHand());
 
 				if (result1 == result2) {
-					if (result1 == handRankings.onePair
-							|| result1 == handRankings.twoPairs
-							|| result1 == handRankings.threeOfAKind
-							|| result1 == handRankings.fourOfAKind) {
+					if (result1 == HandRankings.onePair
+							|| result1 == HandRankings.twoPairs
+							|| result1 == HandRankings.threeOfAKind
+							|| result1 == HandRankings.fourOfAKind) {
 						if (pairValue1 > pairValue2) {
 							p1wins++;
 							System.out.println("player 1 wins\n" + hand1.toString() + " " + result1);

@@ -327,5 +327,18 @@ public class testing {
 		 }
 		 
 	 }
+	 
+	 
+	 @Test
+	 public void testCheckFreqStream(){
+		 System.out.println("*** test check freq stream *****");
+		 Hand h1 = new Hand("2C 2D 2C AH AS");
+		 System.out.println(h1.checkFrequency(h1.getHand()));
+		 
+		 System.out.println("*** test check freq old *****");
+		 Hand h2 = new Hand("2C 2D 2C AH AS");
+		 System.out.println(h1.checkFrequency(h2.getHand()));
+		 
+	 }
 
 }

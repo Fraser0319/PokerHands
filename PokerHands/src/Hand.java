@@ -6,18 +6,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Hand {
 
-	private List<cardValue> broadwayList = Arrays.asList(cardValue.A,
-			cardValue.T, cardValue.J, cardValue.K, cardValue.Q);
-	private List<cardValue> wheelList = Arrays.asList(cardValue.A,
-			cardValue.Two, cardValue.Three, cardValue.Four, cardValue.Five);
-	private ArrayList<Card> handList = new ArrayList<Card>();
+	private List<CardValue> broadwayList = Arrays.asList(CardValue.A,
+			CardValue.T, CardValue.J, CardValue.K, CardValue.Q);
+	private List<CardValue> wheelList = Arrays.asList(CardValue.A,
+			CardValue.Two, CardValue.Three, CardValue.Four, CardValue.Five);
+	private List<Card> handList = new ArrayList<Card>();
 
 	String hand;
 
-	public ArrayList<Card> getHand() {
+	public List<Card> getHand() {
 		return handList;
 	}
 
@@ -34,32 +37,30 @@ public class Hand {
 		}
 	}
 
-	public int getHighestCardValue(ArrayList<Card> hand) {
-		ArrayList<cardValue> cardValues = new ArrayList<cardValue>();
+	public int getHighestCardValue(List<Card> hand) {
+		List<CardValue> cardValues = new ArrayList<CardValue>();
 		for (Card c : hand) {
 			cardValues.add(c.getValue());
 		}
-		cardValue maxCard = Collections.max(cardValues);
+		CardValue maxCard = Collections.max(cardValues);
 		return maxCard.value;
 	}
 
-	public cardValue getHigherSet(ArrayList<Card> hand) {
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
-		for (Map.Entry<cardValue, Integer> e : freqMap.entrySet()) {
-			cardValue card = e.getKey();
+	public CardValue getHigherSet(List<Card> hand) {
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
+		for (Map.Entry<CardValue, Integer> e : freqMap.entrySet()) {
+			CardValue card = e.getKey();
 			int freq = e.getValue();
 
 			switch (freq) {
 			case 2:
-				return card;
 			case 3:
-				return card;
 			case 4:
 				return card;
 			}
 		}
 
-		return cardValue.fail;
+		return CardValue.fail;
 	}
 
 	@Override
@@ -67,24 +68,19 @@ public class Hand {
 		return this.hand.toString();
 	}
 
-	public Map<cardValue, Integer> checkFrequency(ArrayList<Card> hand) {
+	public Map<CardValue, Integer> checkFrequency(List<Card> hand) {
 
-		Map<cardValue, Integer> freqMap = new HashMap<cardValue, Integer>();
+		Map<CardValue, Integer> freqMap = hand
+				.stream()
+				.collect(Collectors.groupingBy(e -> e.getValue(),Collectors.summingInt(e -> 1)));
 
-		for (Card c : hand) {
-			if (freqMap.containsKey(c.getValue())) {
-				freqMap.put(c.getValue(), freqMap.get(c.getValue()) + 1);
-			} else {
-				freqMap.put(c.getValue(), 1);
-			}
-		}
 		return freqMap;
 	}
 
-	public boolean checkFlush(ArrayList<Card> hand) {
+	public boolean checkFlush(List<Card> hand) {
 		String suit = hand.get(0).getSuit();
 		int suitCount = 0;
-		HashMap<cardValue, String> tempMap = new HashMap<cardValue, String>();
+		Map<CardValue, String> tempMap = new HashMap<CardValue, String>();
 
 		for (Card c : hand) {
 			tempMap.put(c.getValue(), c.getSuit());
@@ -94,144 +90,124 @@ public class Hand {
 				suitCount++;
 			}
 		}
-		if (suitCount == 5) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean checkPair(ArrayList<Card> hand) {
-
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
-
-		if (freqMap.containsValue(2)) {
-			return true;
-		}
-		return false;
+		return suitCount == 5;
 
 	}
 
-	public boolean checkTwoPair(ArrayList<Card> hand) {
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
+	public boolean checkPair(List<Card> hand) {
 
-		if (Collections.frequency(freqMap.values(), 2) == 2) {
-			return true;
-		}
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
 
-		return false;
+		return freqMap.containsValue(2);
+
 	}
 
-	public boolean checkThreeOfAKind(ArrayList<Card> hand) {
+	public boolean checkTwoPair(List<Card> hand) {
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
 
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
+		return Collections.frequency(freqMap.values(), 2) == 2;
 
-		if (freqMap.containsValue(3)) {
-			return true;
-		}
-
-		return false;
 	}
 
-	public boolean checkFourOfAKind(ArrayList<Card> hand) {
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
+	public boolean checkThreeOfAKind(List<Card> hand) {
 
-		if (freqMap.containsValue(4)) {
-			return true;
-		} else {
-			return false;
-		}
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
+
+		return freqMap.containsValue(3);
 	}
 
-	public boolean checkFullHouse(ArrayList<Card> hand) {
-		Map<cardValue, Integer> freqMap = checkFrequency(hand);
+	public boolean checkFourOfAKind(List<Card> hand) {
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
+
+		return freqMap.containsValue(4);
+
+	}
+
+	public boolean checkFullHouse(List<Card> hand) {
+		Map<CardValue, Integer> freqMap = checkFrequency(hand);
 
 		Set<Integer> fullHouseCheck = new HashSet<Integer>(freqMap.values());
 		System.out.println(freqMap.keySet());
-		if (fullHouseCheck.contains(2) && fullHouseCheck.contains(3)) {
-			return true;
-		} else {
-			return false;
-		}
+		return fullHouseCheck.contains(2) && fullHouseCheck.contains(3);
+
 	}
 
-	public boolean checkStraight(ArrayList<Card> hand) {
+	public boolean checkStraight(List<Card> hand) {
 
-		ArrayList<cardValue> straightList = new ArrayList<cardValue>();
-		int count = 0;
-		int j = 0;
+		List<CardValue> straightList = new ArrayList<CardValue>();
+
 		for (Card c : hand) {
 			straightList.add(c.getValue());
 		}
-		Collections.sort(straightList);
 		if (straightList.containsAll(wheelList)) {
 			return true;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (straightList.get(j + 1).showValue() == straightList.get(i)
-					.showValue() + 1) {
-				count++;
-				j++;
+		Collections.sort(straightList);
+
+		int count = 0;
+		int previousValue = straightList.remove(0).getValue();
+		while (!straightList.isEmpty()) {
+
+			int currentValue = straightList.remove(0).getValue();
+			if (currentValue != previousValue + 1) {
+				return false;
 			}
 
+			count++;
+			previousValue = currentValue;
 		}
-		if (count == 4) {
-			return true;
-		}
-		return false;
+		return count == 4;
+
 	}
 
-	public boolean checkStraightFlush(ArrayList<Card> hand) {
+	public boolean checkStraightFlush(List<Card> hand) {
 
-		if (checkFlush(hand) == true && checkStraight(hand) == true) {
-			return true;
-		}
-		return false;
+		return checkFlush(hand) == true && checkStraight(hand) == true;
+
 	}
 
-	public boolean checkRoyalFlush(ArrayList<Card> hand) {
-		ArrayList<cardValue> valueList = new ArrayList<cardValue>();
+	public boolean checkRoyalFlush(List<Card> hand) {
+		List<CardValue> valueList = new ArrayList<CardValue>();
 
 		if (checkFlush(hand) == true) {
 			for (Card c : hand) {
 				valueList.add(c.getValue());
 			}
-			if (valueList.containsAll(broadwayList)) {
-				return true;
-			}
+			return valueList.containsAll(broadwayList);
 		}
 		return false;
 	}
 
-	public handRankings evaluateHand(ArrayList<Card> hand) {
+	public HandRankings evaluateHand(List<Card> hand) {
 
 		if (checkRoyalFlush(hand)) {
-			return handRankings.royalFlush;
+			return HandRankings.royalFlush;
 
 		} else if (checkStraightFlush(hand)) {
-			return handRankings.straightFlush;
+			return HandRankings.straightFlush;
 
 		} else if (checkFourOfAKind(hand)) {
-			return handRankings.fourOfAKind;
+			return HandRankings.fourOfAKind;
 
 		} else if (checkFullHouse(hand)) {
-			return handRankings.fullHouse;
+			return HandRankings.fullHouse;
 
 		} else if (checkFlush(hand)) {
-			return handRankings.Flush;
+			return HandRankings.Flush;
 
 		} else if (checkStraight(hand)) {
-			return handRankings.Straight;
+			return HandRankings.Straight;
 
 		} else if (checkThreeOfAKind(hand)) {
-			return handRankings.threeOfAKind;
+			return HandRankings.threeOfAKind;
 
 		} else if (checkTwoPair(hand)) {
-			return handRankings.twoPairs;
+			return HandRankings.twoPairs;
 
 		} else if (checkPair(hand)) {
-			return handRankings.onePair;
+			return HandRankings.onePair;
 		} else {
-			return handRankings.highCard;
+			return HandRankings.highCard;
 		}
 
 	}
